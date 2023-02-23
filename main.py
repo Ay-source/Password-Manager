@@ -67,7 +67,7 @@ def suggest_password():
     select3 = str(random.randint(0, 9)) + str(random.randint(0, 9))
     final_pass = select2 + select3 + select1 + select4
     sample = list(map(str,final_pass))
-    password = []
+    password = ''
     while len(sample) > 0:
         password += sample.pop(random.randint(0, len(sample)-1))
     return password
