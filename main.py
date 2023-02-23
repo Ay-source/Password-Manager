@@ -1,14 +1,19 @@
+import sys
+import string
+import random
 #import pyperclip
 
-def save_password(password, account_name):
+
+def save_password(password,account_description, account_name):
     '''
     This takes two input and append each of them in a new in a txt file
     '''
     with open("pass_not_encrypted.txt", "a") as f:
         f.write(account_name + "\n")
-        f.write(password + "\n")
+        f.write(account_description + "\n")
+        f.write(password + "\n\n")
     f.close()
-    return None
+    return True
 
 def check_password(account_name):
     '''
@@ -56,7 +61,16 @@ def search_accounts():
     pass
 
 def suggest_password():
-    pass
+    select1 = ''.join(random.choices(list('!?*&^%$#'), k=2))
+    select2 = ''.join(random.choices(list(string.ascii_lowercase), k=6))
+    select4 = ''.join(random.choices(list(string.ascii_uppercase), k=2))
+    select3 = str(random.randint(0, 9)) + str(random.randint(0, 9))
+    final_pass = select2 + select3 + select1 + select4
+    sample = list(map(str,final_pass))
+    password = []
+    while len(sample) > 0:
+        password += sample.pop(random.randint(0, len(sample)-1))
+    return password
 
 def update_password():
     pass
@@ -66,11 +80,12 @@ if __name__ == "__main__":
     swapping = True
     while swapping:
         action = input("What will you like to do? save_password(s) / check saved password(c) / List available accounts(l) \
-            an account(q): / Update password(u)").lower()
+an account(q) / Update password(u): ").lower()
         if action in ['s', 'c', 'l', 'q', 'u']:
             swapping = False
     if action in ['s', 'c', 'q', 'u']:
         account_name = input("Name of account/website: ")
+
     if action == 's':
         account_description = input("Add a desciption(Optional): ")
         password_input = input("Autogenerate password(a) / Input password(i)").lower()
@@ -78,8 +93,12 @@ if __name__ == "__main__":
             password = input("Type in the password you want to save: ")
         else:
             password = suggest_password()
-        save_password(password, account_name)
-        print("Password_saved")
+        save = save_password(password, account_description, account_name)
+        if save:
+            print("Password_saved")
+            sys.exit(0)
+        print("An error occured.")
+
     elif action == 'c':
         check_password(account_name)
     elif action == "l":
