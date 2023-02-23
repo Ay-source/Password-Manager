@@ -49,18 +49,43 @@ def pass_sorter(account_name, account, passes):
             account_pass[i] = passes[account.index(account_name)]
     return account_pass
 
+def list_passwords():
+    pass
+
+def search_accounts():
+    pass
+
+def suggest_password():
+    pass
+
+def update_password():
+    pass
+
 
 if __name__ == "__main__":
     swapping = True
     while swapping:
         action = input("What will you like to do? save_password(s) / check saved password(c) / List available accounts(l) \
-            an account(q): ")
-        if action in ['s', 'c', 'l', 'q']:
+            an account(q): / Update password(u)").lower()
+        if action in ['s', 'c', 'l', 'q', 'u']:
             swapping = False
-    account_name = input("Enter the name of the account/website: ")
-    if action.lower() == "s":
-        password = input("Please type in the password you want to save: ")
+    if action in ['s', 'c', 'q', 'u']:
+        account_name = input("Name of account/website: ")
+    if action == 's':
+        account_description = input("Add a desciption(Optional): ")
+        password_input = input("Autogenerate password(a) / Input password(i)").lower()
+        if password_input == 'i':
+            password = input("Type in the password you want to save: ")
+        else:
+            password = suggest_password()
         save_password(password, account_name)
         print("Password_saved")
-    if action.lower() == "c":
+    elif action == 'c':
         check_password(account_name)
+    elif action == "l":
+        list_passwords()
+    elif action == 'q':
+        search_accounts(account_name)
+    else:
+        update_password(account_name)
+    
