@@ -53,10 +53,11 @@ def pass_sorter(account_name, account, passes):
 if __name__ == "__main__":
     swapping = True
     while swapping:
-        action = input("What will you like to do? (save_password(s)/check password(c)): ")
-        if 's' in action or 'c' in action:
+        action = input("What will you like to do? save_password(s) / check saved password(c) / List available accounts(l) \
+            an account(q): ")
+        if action in ['s', 'c', 'l', 'q']:
             swapping = False
-    account_name = input("Enter the name of the account: ")
+    account_name = input("Enter the name of the account/website: ")
     if action.lower() == "s":
         password = input("Please type in the password you want to save: ")
         save_password(password, account_name)
