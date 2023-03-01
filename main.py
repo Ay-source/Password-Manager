@@ -1,7 +1,8 @@
 import sys
 import string
+import time
 import random
-#import pyperclip
+import pyperclip
 
 
 def save_password(password,account_description, account_name):
@@ -9,7 +10,7 @@ def save_password(password,account_description, account_name):
     This takes two input and append each of them in a new in a txt file
     '''
     with open("pass_not_encrypted.txt", "a") as f:
-        f.write(account_name + "\n")
+        f.write(account_name.lower() + "\n")
         f.write(account_description + "\n")
         f.write(password + "\n\n")
     f.close()
@@ -24,7 +25,7 @@ def check_password(account_name):
             x = f.readlines()
     f.close()
     for i in x:
-        lst.append(i.strip('\n'))
+        lst.append(i.strip('\n').lower())
     account, passes = checked_password_string(lst)
     account_pass = pass_sorter(account_name, account, passes)
     for i in account_pass:
@@ -60,6 +61,13 @@ def list_passwords():
 def search_accounts():
     pass
 
+def copy_and_paste_values(password):
+    try:
+        pyperclip.copy(password)
+        return True
+    except:
+        return False
+
 def suggest_password():
     select1 = ''.join(random.choices(list('!?*&^%$#'), k=2))
     select2 = ''.join(random.choices(list(string.ascii_lowercase), k=6))
@@ -94,6 +102,12 @@ an account(q) / Update password(u): ").lower()
         else:
             password = suggest_password()
         save = save_password(password, account_description, account_name)
+        keep = input("Do you wish to copy the password? Y/N: ").lower()
+        if keep == 'y':
+            keep_valid = copy_and_paste_values(password)
+        if keep_valid:
+            print("Passsword copied to clipboard")
+            time.sleep(2)
         if save:
             print("Password_saved")
             sys.exit(0)
