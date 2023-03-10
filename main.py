@@ -88,7 +88,7 @@ if __name__ == "__main__":
     swapping = True
     while swapping:
         action = input("What will you like to do? save_password(s) / check saved password(c) / List available accounts(l) \
-an account(q) / Update password(u): ").lower()
+search account(q) / Update account(u): ").lower()
         if action in ['s', 'c', 'l', 'q', 'u']:
             swapping = False
     if action in ['s', 'c', 'q', 'u']:

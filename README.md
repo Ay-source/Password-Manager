@@ -2,7 +2,18 @@
 A python script for saving password.
 The saved password is not encrypted.
 
+## What can Pass_Saver Do?
+---
+- Save password:
+    - Can generate password to save which it automatically copies to the clipboard.
+    - Can also use user-given password instead of auto-generated
+- Check saved password: Check your saved password by typing the website of the password to search for. Its a pattern matching thing.
+- List available accounts: This lists all the accounts that has been saved.
+- Search an account: Search for a particular account.
+- Update an accont: Used to update an accout.
+
 ## Installation Steps
+---
 Follow these steps to install this program.
 Pre-requisites:
 Python3
