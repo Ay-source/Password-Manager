@@ -56,6 +56,9 @@ def pass_sorter(account_name, account, account_description, passes):
     """
     account_pass = dict()
     account_descript = dict()
+    print(len(account_name))
+    print(len(account_description))
+    print(len(account_pass))
     for i in account:
         if account_name in i:
             position = account.index(account_name)
